@@ -64,8 +64,7 @@ namespace Calculator20 {
 
 	private: System::Windows::Forms::Button^ button20;
 	private: int first_num;
-	private: char user_action = ' ';
-	private: bool is_equal = false;
+	private: char user_action;
 	protected:
 
 	protected:
@@ -492,13 +491,10 @@ namespace Calculator20 {
 
 
 	private: System::Void btnNumber_Click(System::Object^ sender, System::EventArgs^ e) {
-		this->result_label->ForeColor = Color::White;
 		Button^ button = safe_cast<Button^>(sender);
 
-		if (this->result_label->Text == "0" || is_equal) {
+		if (this->result_label->Text == "0")
 			this->result_label->Text = button->Text;
-			is_equal = false;
-		}
 		else
 			this->result_label->Text = this->result_label->Text + button->Text;
 	}
@@ -521,9 +517,6 @@ namespace Calculator20 {
 		this->result_label->Text = "0";
 	}
 	private: System::Void btn_ravn_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (user_action == ' ')
-			return;
-
 		int second = System::Convert::ToInt32(this->result_label->Text);
 		int res;
 		switch (this->user_action) {
@@ -537,16 +530,9 @@ namespace Calculator20 {
 			res = this->first_num * second;
 			break;
 		case '/':
-			if (second == 0) {
-				res = 0;
-				this->result_label->ForeColor = Color::Red;
-				MessageBox::Show(this, "Делить на ноль нельзя", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
-			}
-			else
-			    res = this->first_num / second;
+			res = this->first_num / second;
 			break;
 		}
-		this->is_equal = true;
 		this->result_label->Text = System::Convert::ToString(res);
 	}
 	};
