@@ -62,8 +62,9 @@ namespace Calculator20 {
 	private: System::Windows::Forms::Button^ button15;
 	private: System::Windows::Forms::Button^ button16;
 	private: System::Windows::Forms::Button^ btn_ravn;
+	private: System::Windows::Forms::Button^ btn_pikap;
 
-	private: System::Windows::Forms::Button^ button18;
+
 
 	private: System::Windows::Forms::Button^ button20;
 	private: int first_num;
@@ -119,7 +120,7 @@ namespace Calculator20 {
 			this->button15 = (gcnew System::Windows::Forms::Button());
 			this->button16 = (gcnew System::Windows::Forms::Button());
 			this->btn_ravn = (gcnew System::Windows::Forms::Button());
-			this->button18 = (gcnew System::Windows::Forms::Button());
+			this->btn_pikap = (gcnew System::Windows::Forms::Button());
 			this->button20 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
@@ -424,20 +425,21 @@ namespace Calculator20 {
 			this->btn_ravn->UseVisualStyleBackColor = false;
 			this->btn_ravn->Click += gcnew System::EventHandler(this, &MyForm::btn_ravn_Click);
 			// 
-			// button18
+			// btn_pikap
 			// 
-			this->button18->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(115)), static_cast<System::Int32>(static_cast<System::Byte>(105)),
+			this->btn_pikap->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(115)), static_cast<System::Int32>(static_cast<System::Byte>(105)),
 				static_cast<System::Int32>(static_cast<System::Byte>(219)));
-			this->button18->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button18->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
+			this->btn_pikap->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btn_pikap->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
-			this->button18->ForeColor = System::Drawing::Color::White;
-			this->button18->Location = System::Drawing::Point(175, 365);
-			this->button18->Name = L"button18";
-			this->button18->Size = System::Drawing::Size(65, 55);
-			this->button18->TabIndex = 20;
-			this->button18->Text = L".";
-			this->button18->UseVisualStyleBackColor = false;
+			this->btn_pikap->ForeColor = System::Drawing::Color::White;
+			this->btn_pikap->Location = System::Drawing::Point(175, 365);
+			this->btn_pikap->Name = L"btn_pikap";
+			this->btn_pikap->Size = System::Drawing::Size(65, 55);
+			this->btn_pikap->TabIndex = 20;
+			this->btn_pikap->Text = L".";
+			this->btn_pikap->UseVisualStyleBackColor = false;
+			this->btn_pikap->Click += gcnew System::EventHandler(this, &MyForm::btn_pikap_Click);
 			// 
 			// button20
 			// 
@@ -463,7 +465,7 @@ namespace Calculator20 {
 				static_cast<System::Int32>(static_cast<System::Byte>(209)));
 			this->ClientSize = System::Drawing::Size(334, 461);
 			this->Controls->Add(this->btn_ravn);
-			this->Controls->Add(this->button18);
+			this->Controls->Add(this->btn_pikap);
 			this->Controls->Add(this->button20);
 			this->Controls->Add(this->btn_plus);
 			this->Controls->Add(this->button14);
@@ -574,6 +576,9 @@ private: System::Void btn_minus_plus_Click(System::Object^ sender, System::Event
 }
 private: System::Void btn_persent_Click(System::Object^ sender, System::EventArgs^ e) {
 	math_action('%');
+}
+private: System::Void btn_pikap_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->result_label->Text = this->result_label->Text + ".";
 }
 };
 }
