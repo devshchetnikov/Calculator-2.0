@@ -67,7 +67,7 @@ namespace Calculator20 {
 
 
 	private: System::Windows::Forms::Button^ button20;
-	private: int first_num;
+	private: float first_num;
 	private: char user_action = ' ';
 	private: bool is_equal = false;
 	protected:
@@ -437,7 +437,7 @@ namespace Calculator20 {
 			this->btn_pikap->Name = L"btn_pikap";
 			this->btn_pikap->Size = System::Drawing::Size(65, 55);
 			this->btn_pikap->TabIndex = 20;
-			this->btn_pikap->Text = L".";
+			this->btn_pikap->Text = L",";
 			this->btn_pikap->UseVisualStyleBackColor = false;
 			this->btn_pikap->Click += gcnew System::EventHandler(this, &MyForm::btn_pikap_Click);
 			// 
@@ -524,7 +524,7 @@ namespace Calculator20 {
 	}
 
 	private: System::Void math_action(char action) {
-		this->first_num = System::Convert::ToInt32(this->result_label->Text);
+		this->first_num = System::Convert::ToDouble(this->result_label->Text);
 		this->user_action = action;
 		this->result_label->Text = "0";
 	}
@@ -532,10 +532,10 @@ namespace Calculator20 {
 		if (user_action == ' ')
 			return;
 
-		int second = System::Convert::ToInt32(this->result_label->Text);
-		int res;
+		float second = System::Convert::ToDouble(this->result_label->Text);
+		float res;
 		switch (this->user_action) {
-		case '+': 
+		case '+':
 			res = this->first_num + second;
 			break;
 		case '-':
@@ -552,10 +552,10 @@ namespace Calculator20 {
 				res = 0;
 				this->result_label->ForeColor = Color::Red;
 				MessageBox::Show(this, "Äåëèòü íà íîëü íåëüçÿ", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
-				
+
 			}
 			else
-			    res = this->first_num / second;
+				res = this->first_num / second;
 			break;
 
 		}
@@ -569,16 +569,18 @@ namespace Calculator20 {
 		this->user_action = ' ';
 		is_equal = false;
 	}
-private: System::Void btn_minus_plus_Click(System::Object^ sender, System::EventArgs^ e) {
-	int num = System::Convert::ToInt32(this->result_label->Text);
-	num *= -1;
-	this->result_label->Text = System::Convert::ToString(num);
-}
-private: System::Void btn_persent_Click(System::Object^ sender, System::EventArgs^ e) {
-	math_action('%');
-}
-private: System::Void btn_pikap_Click(System::Object^ sender, System::EventArgs^ e) {
-	this->result_label->Text = this->result_label->Text + ".";
-}
-};
+	private: System::Void btn_minus_plus_Click(System::Object^ sender, System::EventArgs^ e) {
+		float num = System::Convert::ToDouble(this->result_label->Text);
+		num *= -1;
+		this->result_label->Text = System::Convert::ToString(num);
+	}
+	private: System::Void btn_persent_Click(System::Object^ sender, System::EventArgs^ e) {
+		math_action('%');
+	}
+	private: System::Void btn_pikap_Click(System::Object^ sender, System::EventArgs^ e) {
+		String^ text = this->result_label->Text;
+		if(!text->Contains(","))
+		this->result_label->Text = text + ",";
+	}
+	};
 }
