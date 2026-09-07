@@ -437,7 +437,7 @@ namespace Calculator20 {
 			this->btn_pikap->Name = L"btn_pikap";
 			this->btn_pikap->Size = System::Drawing::Size(65, 55);
 			this->btn_pikap->TabIndex = 20;
-			this->btn_pikap->Text = L",";
+			this->btn_pikap->Text = L".";
 			this->btn_pikap->UseVisualStyleBackColor = false;
 			this->btn_pikap->Click += gcnew System::EventHandler(this, &MyForm::btn_pikap_Click);
 			// 
@@ -524,10 +524,11 @@ namespace Calculator20 {
 	}
 
 	private: System::Void math_action(char action) {
-		this->first_num = System::Convert::ToDouble(this->result_label->Text);
+		this->first_num = System::Convert::ToDouble(this->result_label->Text, System::Globalization::CultureInfo::InvariantCulture);
 		this->user_action = action;
 		this->result_label->Text = "0";
 	}
+
 	private: System::Void btn_ravn_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (user_action == ' ')
 			return;
@@ -560,8 +561,9 @@ namespace Calculator20 {
 
 		}
 		this->is_equal = true;
-		this->result_label->Text = System::Convert::ToString(res);
+		this->result_label->Text = System::Convert::ToString(res, System::Globalization::CultureInfo::InvariantCulture);
 	}
+
 	private: System::Void btn_ac_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->result_label->Text = "0";
 		this->result_label->ForeColor = Color::White;
@@ -570,17 +572,18 @@ namespace Calculator20 {
 		is_equal = false;
 	}
 	private: System::Void btn_minus_plus_Click(System::Object^ sender, System::EventArgs^ e) {
-		float num = System::Convert::ToDouble(this->result_label->Text);
+		float num = System::Convert::ToDouble(this->result_label->Text, System::Globalization::CultureInfo::InvariantCulture);
 		num *= -1;
-		this->result_label->Text = System::Convert::ToString(num);
+		this->result_label->Text = System::Convert::ToString(num, System::Globalization::CultureInfo::InvariantCulture);
 	}
+
 	private: System::Void btn_persent_Click(System::Object^ sender, System::EventArgs^ e) {
 		math_action('%');
 	}
 	private: System::Void btn_pikap_Click(System::Object^ sender, System::EventArgs^ e) {
 		String^ text = this->result_label->Text;
-		if(!text->Contains(","))
-		this->result_label->Text = text + ",";
+		if(!text->Contains("."))
+		this->result_label->Text = text + ".";
 	}
 	};
 }
