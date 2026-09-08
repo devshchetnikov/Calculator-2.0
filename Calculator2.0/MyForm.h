@@ -461,8 +461,8 @@ namespace Calculator20 {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(77)), static_cast<System::Int32>(static_cast<System::Byte>(65)),
-				static_cast<System::Int32>(static_cast<System::Byte>(209)));
+			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)), static_cast<System::Int32>(static_cast<System::Byte>(96)),
+				static_cast<System::Int32>(static_cast<System::Byte>(168)));
 			this->ClientSize = System::Drawing::Size(334, 461);
 			this->Controls->Add(this->btn_ravn);
 			this->Controls->Add(this->btn_pikap);
