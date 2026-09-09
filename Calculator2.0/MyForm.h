@@ -126,8 +126,8 @@ namespace Calculator20 {
 			// 
 			// button_exit
 			// 
-			this->button_exit->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(212)), static_cast<System::Int32>(static_cast<System::Byte>(57)),
-				static_cast<System::Int32>(static_cast<System::Byte>(67)));
+			this->button_exit->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(102)), static_cast<System::Int32>(static_cast<System::Byte>(4)),
+				static_cast<System::Int32>(static_cast<System::Byte>(11)));
 			this->button_exit->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->button_exit->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
