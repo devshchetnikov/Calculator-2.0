@@ -584,6 +584,7 @@ namespace Calculator20 {
 		String^ text = this->result_label->Text;
 		if(!text->Contains("."))
 		this->result_label->Text = text + ".";
+
 	}
 	};
 }
