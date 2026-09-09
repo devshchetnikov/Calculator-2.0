@@ -577,6 +577,7 @@ namespace Calculator20 {
 		this->result_label->Text = System::Convert::ToString(num, System::Globalization::CultureInfo::InvariantCulture);
 	}
 
+
 	private: System::Void btn_persent_Click(System::Object^ sender, System::EventArgs^ e) {
 		math_action('%');
 	}
