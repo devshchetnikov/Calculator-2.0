@@ -70,6 +70,8 @@ namespace Calculator20 {
 	private: float first_num;
 	private: char user_action = ' ';
 	private: bool is_equal = false;
+	private: System::Windows::Forms::Button^ btn_sv;
+
 	protected:
 
 	protected:
@@ -122,6 +124,7 @@ namespace Calculator20 {
 			this->btn_ravn = (gcnew System::Windows::Forms::Button());
 			this->btn_pikap = (gcnew System::Windows::Forms::Button());
 			this->button20 = (gcnew System::Windows::Forms::Button());
+			this->btn_sv = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// button_exit
@@ -457,6 +460,22 @@ namespace Calculator20 {
 			this->button20->UseVisualStyleBackColor = false;
 			this->button20->Click += gcnew System::EventHandler(this, &MyForm::btnNumber_Click);
 			// 
+			// btn_sv
+			// 
+			this->btn_sv->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(7)), static_cast<System::Int32>(static_cast<System::Byte>(89)),
+				static_cast<System::Int32>(static_cast<System::Byte>(148)));
+			this->btn_sv->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btn_sv->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->btn_sv->ForeColor = System::Drawing::Color::White;
+			this->btn_sv->Location = System::Drawing::Point(63, 12);
+			this->btn_sv->Name = L"btn_sv";
+			this->btn_sv->Size = System::Drawing::Size(35, 23);
+			this->btn_sv->TabIndex = 22;
+			this->btn_sv->Text = L"-";
+			this->btn_sv->UseVisualStyleBackColor = false;
+			this->btn_sv->Click += gcnew System::EventHandler(this, &MyForm::btn_sv_Click);
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -464,6 +483,7 @@ namespace Calculator20 {
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)), static_cast<System::Int32>(static_cast<System::Byte>(96)),
 				static_cast<System::Int32>(static_cast<System::Byte>(168)));
 			this->ClientSize = System::Drawing::Size(334, 461);
+			this->Controls->Add(this->btn_sv);
 			this->Controls->Add(this->btn_ravn);
 			this->Controls->Add(this->btn_pikap);
 			this->Controls->Add(this->button20);
@@ -583,9 +603,13 @@ namespace Calculator20 {
 	}
 	private: System::Void btn_pikap_Click(System::Object^ sender, System::EventArgs^ e) {
 		String^ text = this->result_label->Text;
-		if(!text->Contains("."))
-		this->result_label->Text = text + ".";
+		if (!text->Contains("."))
+			this->result_label->Text = text + ".";
 
 	}
+	private: System::Void btn_sv_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->WindowState = FormWindowState::Minimized;
+	}
+
 	};
 }
