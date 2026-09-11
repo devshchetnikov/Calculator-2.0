@@ -9,6 +9,7 @@ namespace Calculator20 {
 	using namespace System::Data;
 	using namespace System::Drawing;
 
+
 	/// <summary>
 	/// Ñâîäêà äëÿ MyForm
 	/// </summary>
@@ -71,6 +72,8 @@ namespace Calculator20 {
 	private: char user_action = ' ';
 	private: bool is_equal = false;
 	private: System::Windows::Forms::Button^ btn_sv;
+	private: System::Windows::Forms::Label^ labelHistory;
+
 
 	protected:
 
@@ -125,6 +128,7 @@ namespace Calculator20 {
 			this->btn_pikap = (gcnew System::Windows::Forms::Button());
 			this->button20 = (gcnew System::Windows::Forms::Button());
 			this->btn_sv = (gcnew System::Windows::Forms::Button());
+			this->labelHistory = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// button_exit
@@ -148,7 +152,7 @@ namespace Calculator20 {
 			this->result_label->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 27.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->result_label->ForeColor = System::Drawing::Color::White;
-			this->result_label->Location = System::Drawing::Point(12, 9);
+			this->result_label->Location = System::Drawing::Point(7, 9);
 			this->result_label->Name = L"result_label";
 			this->result_label->Size = System::Drawing::Size(310, 62);
 			this->result_label->TabIndex = 1;
@@ -476,6 +480,16 @@ namespace Calculator20 {
 			this->btn_sv->UseVisualStyleBackColor = false;
 			this->btn_sv->Click += gcnew System::EventHandler(this, &MyForm::btn_sv_Click);
 			// 
+			// labelHistory
+			// 
+			this->labelHistory->AutoSize = true;
+			this->labelHistory->ForeColor = System::Drawing::SystemColors::ButtonFace;
+			this->labelHistory->Location = System::Drawing::Point(287, 9);
+			this->labelHistory->Name = L"labelHistory";
+			this->labelHistory->Size = System::Drawing::Size(0, 13);
+			this->labelHistory->TabIndex = 23;
+			this->labelHistory->Click += gcnew System::EventHandler(this, &MyForm::labelHistory_Click);
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -483,6 +497,7 @@ namespace Calculator20 {
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)), static_cast<System::Int32>(static_cast<System::Byte>(96)),
 				static_cast<System::Int32>(static_cast<System::Byte>(168)));
 			this->ClientSize = System::Drawing::Size(334, 461);
+			this->Controls->Add(this->labelHistory);
 			this->Controls->Add(this->btn_sv);
 			this->Controls->Add(this->btn_ravn);
 			this->Controls->Add(this->btn_pikap);
@@ -511,6 +526,7 @@ namespace Calculator20 {
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Calculator";
 			this->ResumeLayout(false);
+			this->PerformLayout();
 
 		}
 #pragma endregion
@@ -546,8 +562,10 @@ namespace Calculator20 {
 	private: System::Void math_action(char action) {
 		this->first_num = System::Convert::ToDouble(this->result_label->Text, System::Globalization::CultureInfo::InvariantCulture);
 		this->user_action = action;
+		this->labelHistory->Text = this->result_label->Text + " " + System::Convert::ToChar(action) + " ";
 		this->result_label->Text = "0";
 	}
+
 
 	private: System::Void btn_ravn_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (user_action == ' ')
@@ -555,7 +573,10 @@ namespace Calculator20 {
 
 		float second = System::Convert::ToDouble(this->result_label->Text);
 		float res;
+		this->labelHistory->Text += System::Convert::ToString(second, System::Globalization::CultureInfo::InvariantCulture) + " =";
+
 		switch (this->user_action) {
+
 		case '+':
 			res = this->first_num + second;
 			break;
@@ -611,5 +632,7 @@ namespace Calculator20 {
 		this->WindowState = FormWindowState::Minimized;
 	}
 
+	private: System::Void labelHistory_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
 	};
 }
