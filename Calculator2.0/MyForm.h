@@ -626,6 +626,7 @@ namespace Calculator20 {
 		String^ text = this->result_label->Text;
 		if (!text->Contains("."))
 			this->result_label->Text = text + ".";
+		
 
 	}
 	private: System::Void btn_sv_Click(System::Object^ sender, System::EventArgs^ e) {
