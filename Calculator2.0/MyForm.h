@@ -522,9 +522,11 @@ namespace Calculator20 {
 			this->Controls->Add(this->result_label);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
+			this->KeyPreview = true;
 			this->Name = L"MyForm";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Calculator";
+			this->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &MyForm::MyForm_KeyDown);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -626,7 +628,7 @@ namespace Calculator20 {
 		String^ text = this->result_label->Text;
 		if (!text->Contains("."))
 			this->result_label->Text = text + ".";
-		
+
 
 	}
 	private: System::Void btn_sv_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -635,5 +637,23 @@ namespace Calculator20 {
 
 	private: System::Void labelHistory_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
+
+	private: System::Void MyForm_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
+		// Цифры от 0 до 9
+		if (e->KeyCode == Keys::D0 || e->KeyCode == Keys::NumPad0) { button20->PerformClick(); }
+		else if (e->KeyCode == Keys::D1 || e->KeyCode == Keys::NumPad1) { button14->PerformClick(); }
+		else if (e->KeyCode == Keys::D2 || e->KeyCode == Keys::NumPad2) { button15->PerformClick(); }
+		else if (e->KeyCode == Keys::D3 || e->KeyCode == Keys::NumPad3) { button16->PerformClick(); }
+		else if (e->KeyCode == Keys::D4 || e->KeyCode == Keys::NumPad4) { button10->PerformClick(); }
+		else if (e->KeyCode == Keys::D5 || e->KeyCode == Keys::NumPad5) { button11->PerformClick(); }
+		else if (e->KeyCode == Keys::D6 || e->KeyCode == Keys::NumPad6) { button12->PerformClick(); }
+		else if (e->KeyCode == Keys::D7 || e->KeyCode == Keys::NumPad7) { button6->PerformClick(); }
+		else if (e->KeyCode == Keys::D8 || e->KeyCode == Keys::NumPad8) { button7->PerformClick(); }
+		else if (e->KeyCode == Keys::D9 || e->KeyCode == Keys::NumPad9) { button8->PerformClick(); }
+	}
+
+
+
+
 	};
 }
