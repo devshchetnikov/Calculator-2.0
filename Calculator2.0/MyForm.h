@@ -73,6 +73,8 @@ namespace Calculator20 {
 	private: bool is_equal = false;
 	private: System::Windows::Forms::Button^ btn_sv;
 	private: System::Windows::Forms::Label^ labelHistory;
+	private: System::Windows::Forms::Button^ btn_backspace;
+
 
 
 	protected:
@@ -129,6 +131,7 @@ namespace Calculator20 {
 			this->button20 = (gcnew System::Windows::Forms::Button());
 			this->btn_sv = (gcnew System::Windows::Forms::Button());
 			this->labelHistory = (gcnew System::Windows::Forms::Label());
+			this->btn_backspace = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// button_exit
@@ -440,7 +443,7 @@ namespace Calculator20 {
 			this->btn_pikap->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
 			this->btn_pikap->ForeColor = System::Drawing::Color::White;
-			this->btn_pikap->Location = System::Drawing::Point(175, 365);
+			this->btn_pikap->Location = System::Drawing::Point(94, 365);
 			this->btn_pikap->Name = L"btn_pikap";
 			this->btn_pikap->Size = System::Drawing::Size(65, 55);
 			this->btn_pikap->TabIndex = 20;
@@ -458,7 +461,7 @@ namespace Calculator20 {
 			this->button20->ForeColor = System::Drawing::Color::White;
 			this->button20->Location = System::Drawing::Point(13, 365);
 			this->button20->Name = L"button20";
-			this->button20->Size = System::Drawing::Size(146, 55);
+			this->button20->Size = System::Drawing::Size(66, 55);
 			this->button20->TabIndex = 18;
 			this->button20->Text = L"0";
 			this->button20->UseVisualStyleBackColor = false;
@@ -490,6 +493,22 @@ namespace Calculator20 {
 			this->labelHistory->TabIndex = 23;
 			this->labelHistory->Click += gcnew System::EventHandler(this, &MyForm::labelHistory_Click);
 			// 
+			// btn_backspace
+			// 
+			this->btn_backspace->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(115)), static_cast<System::Int32>(static_cast<System::Byte>(105)),
+				static_cast<System::Int32>(static_cast<System::Byte>(219)));
+			this->btn_backspace->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btn_backspace->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
+			this->btn_backspace->ForeColor = System::Drawing::Color::White;
+			this->btn_backspace->Location = System::Drawing::Point(175, 365);
+			this->btn_backspace->Name = L"btn_backspace";
+			this->btn_backspace->Size = System::Drawing::Size(65, 55);
+			this->btn_backspace->TabIndex = 24;
+			this->btn_backspace->Text = L" <-";
+			this->btn_backspace->UseVisualStyleBackColor = false;
+			this->btn_backspace->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -497,6 +516,7 @@ namespace Calculator20 {
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)), static_cast<System::Int32>(static_cast<System::Byte>(96)),
 				static_cast<System::Int32>(static_cast<System::Byte>(168)));
 			this->ClientSize = System::Drawing::Size(334, 461);
+			this->Controls->Add(this->btn_backspace);
 			this->Controls->Add(this->labelHistory);
 			this->Controls->Add(this->btn_sv);
 			this->Controls->Add(this->btn_ravn);
@@ -655,5 +675,18 @@ namespace Calculator20 {
 
 
 
-	};
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (result_label->Text->Length > 0)
+		{
+			result_label->Text = result_label->Text->Substring(0, result_label->Text->Length - 1);
+		}
+		if (result_label->Text->Length == 0 || result_label->Text == "-")
+		{
+			result_label->Text = "0";
+		}
+
+
+
+	}
+};
 }
